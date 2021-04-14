@@ -58,7 +58,7 @@ const FavoritesPage = () => {
       {apiError && <ErrorToast />}
       <Row className='m-2 m-lg-5'>
         {favoritesList.map((city, i) => (
-          <Col key={i} sm={3} className='p-2'>
+          <Col lg={2} md={3} xs={6} key={i} className='p-2'>
             <LinkContainer exact to='/'>
               <Card
                 onClick={() => handleFavoriteClick(city)}
