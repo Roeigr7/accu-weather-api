@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.days-grid {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px 10px;
+}
+
+.day-container {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.04) 0px 1px 2px;
+  height: 100px;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.city-title {
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+.day-text {
+  margin: 5px;
+  font-size: 1em;
+}
+
+.current-day-container {
+  display: flex;
+  align-items: center;
+}
+.current-day-text {
+  margin: 5px 15px 5px 0px;
+}
+.no-favorites-container {
+  box-shadow: rgba(255, 0, 0, 0.22) 0px 0px 2px 1px;
+  display: flex;
+  align-items: center;
+}
+.no-favorites-text {
+  margin: 0;
+  padding: 10px;
+}
+
+.favorite-card:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.4s all;
+}
+.toast-text-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .days-grid {
+    grid-template-columns: repeat(2, 0.5fr);
+  }
+
+  .current-day-text-container {
+    display: flex;
+  }
+}
