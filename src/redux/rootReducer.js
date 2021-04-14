@@ -1,6 +1,6 @@
 const initialState = {
   currentCity: {
-    name: 'initialLanding',
+    name: 'Your location',
     key: '215854',
   },
   favorites: [],

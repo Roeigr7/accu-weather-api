@@ -17,10 +17,10 @@ const HomePage = () => {
   const [apiError, setApiError] = useState(false);
   const isFavorite = favoritesList.some(f => f.name === currentCity.name);
   useEffect(() => {
-    if (navigator.geolocation && currentCity.name === 'initialLanding') {
+    if (navigator.geolocation && currentCity.name === 'Your location') {
       navigator.geolocation.getCurrentPosition(position => {
         fetch(
-          `https://dataservice.accuweather.com//locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${position.coords.latitude}%2C${position.coords.longitude}`
+          `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${position.coords.latitude}%2C${position.coords.longitude}`
         )
           .then(res => res.json())
           .then(data => {
@@ -37,11 +37,11 @@ const HomePage = () => {
   }, []);
 
   const fiveDaysApi = useFetch(
-    `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
+    `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
     {}
   );
   const currentCityApi = useFetch(
-    `http://dataservice.accuweather.com/currentconditions/v1/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
+    `https://dataservice.accuweather.com/currentconditions/v1/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
     {}
   );
 
