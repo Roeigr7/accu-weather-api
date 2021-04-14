@@ -12,7 +12,7 @@ const FavoritesPage = () => {
   useEffect(() => {
     for (const city of favorites) {
       fetch(
-        `http://dataservice.accuweather.com/currentconditions/v1/${city.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`
+        `https://dataservice.accuweather.com/currentconditions/v1/${city.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`
       )
         .then(response => response.json())
         .then(data => {

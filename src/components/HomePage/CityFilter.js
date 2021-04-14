@@ -21,7 +21,7 @@ const CityFilter = () => {
   const handleSearch = input => {
     setLoading(true);
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${input}`
+      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${input}`
     )
       .then(res => res.json())
       .then(data => {

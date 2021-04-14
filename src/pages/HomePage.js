@@ -20,7 +20,7 @@ const HomePage = () => {
     if (navigator.geolocation && currentCity.name === 'initialLanding') {
       navigator.geolocation.getCurrentPosition(position => {
         fetch(
-          `http://dataservice.accuweather.com//locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${position.coords.latitude}%2C${position.coords.longitude}`
+          `https://dataservice.accuweather.com//locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${position.coords.latitude}%2C${position.coords.longitude}`
         )
           .then(res => res.json())
           .then(data => {
