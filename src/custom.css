@@ -1,13 +1,11 @@
 body {
   background-color: #007bff;
   margin: 0;
-
   background: linear-gradient(
       rgba(0, 123, 255, 0.9) 0%,
       rgba(0, 123, 255, 0.6) 100%
     ),
-    url('../src/assets/images/j.jpg');
-
+    url('../src/assets/images/background.jpg');
   background-size: cover;
   min-height: 100vh;
   background-repeat: no-repeat;
@@ -23,15 +21,31 @@ p {
 span {
   color: white;
 }
+.nav-divider {
+  width: 1px;
+  margin: auto 10px;
+  height: 35px;
+
+  background: rgb(97, 97, 97);
+}
+.dark-theme {
+  background-color: var(--dark);
+  min-width: 100%;
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
 .home-container {
   z-index: 10;
+
   position: relative;
 }
 .text-thin {
   font-weight: 100;
 }
 .clouds {
-  opacity: 0.3;
+  opacity: 0.15;
   background: transparent;
   overflow: hidden;
   position: absolute;
@@ -50,6 +64,7 @@ span {
   background-color: transparent;
   overflow: hidden;
   animation: clouds infinite linear;
+
   z-index: 0;
 }
 .clouds li:nth-child(1) {
@@ -60,7 +75,8 @@ span {
   background-image: url('../src/assets/images/cloud1.png');
   left: -100%;
   top: 10%;
-  animation-duration: 21s;
+  animation-duration: 56s;
+
   animation-delay: 4s;
 }
 .clouds li:nth-child(2) {
@@ -70,8 +86,10 @@ span {
   height: 40%;
   background-image: url('../src/assets/images/cloud2.png');
   left: -100%;
-  top: 100%;
-  animation-duration: 18s;
+
+  top: 52%;
+
+  animation-duration: 27s;
   animation-delay: 6s;
 }
 .clouds li:nth-child(3) {
@@ -79,14 +97,14 @@ span {
   background-repeat: no-repeat;
   width: 40%;
   height: 40%;
+
   background-image: url('../src/assets/images/cloud2.png');
   left: -100%;
   top: 34%;
-  animation-duration: 28s;
+  animation-duration: 60s;
   animation-delay: 3s;
 }
 .clouds li:nth-child(4) {
-  background-color: rgb(0, 0, 0) 05, 50, 0.384;
   background-size: contain;
   background-repeat: no-repeat;
   width: 40%;
@@ -94,8 +112,9 @@ span {
   background-image: url('../src/assets/images/cloud4.png');
   left: -100%;
   top: 44%;
-  animation-duration: 22s;
-  animation-delay: 2s;
+  opacity: 0.2;
+  animation-duration: 37s;
+  animation-delay: 0s;
 }
 .clouds li:nth-child(5) {
   background-size: contain;
@@ -104,8 +123,8 @@ span {
   height: 40%;
   background-image: url('../src/assets/images/cloud5.png');
   left: -100%;
-  top: 60%;
-  animation-duration: 16s;
+  top: 33%;
+  animation-duration: 40s;
   animation-delay: 5s;
 }
 .clouds li:nth-child(6) {
@@ -116,8 +135,20 @@ span {
   background-image: url('../src/assets/images/cloud6.png');
   left: -100%;
   top: 19%;
-  animation-duration: 17s;
+  animation-duration: 36s;
   animation-delay: 1s;
+}
+.clouds li:nth-child(7) {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 40%;
+
+  background-image: url('../src/assets/images/cloud6.png');
+  left: -100%;
+  top: 4%;
+  animation-duration: 40s;
+  animation-delay: 4s;
 }
 @keyframes clouds {
   0% {
@@ -250,5 +281,8 @@ span {
 @media only screen and (max-width: 576px) {
   .current-day-text-container {
     display: flex;
+  }
+  .nav-divider {
+    display: none;
   }
 }

@@ -4,6 +4,7 @@ const initialState = {
     key: '215854',
   },
   favorites: [],
+  theme: true,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -29,6 +30,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
+      };
+    case 'TOGGLE_THEME':
+      return {
+        ...state,
+        theme: action.payload,
       };
     default:
       return state;

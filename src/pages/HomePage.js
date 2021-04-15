@@ -14,6 +14,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
   const favoritesList = useSelector(state => state.favorites);
+  const theme = useSelector(state => state.theme);
 
   const [celcius, setCelcius] = useState(true);
   const [apiError, setApiError] = useState(false);
@@ -65,7 +66,7 @@ const HomePage = () => {
   }
 
   return (
-    <>
+    <div className={theme === 'light' ? null : 'dark-theme'}>
       <Container className='home-container pb-0 mb-0'>
         <Row className='pt-5 pt-sm-2 d-flex align-items-center justify-content-between mx-md-2 '>
           <Col className=' text-center d-flex align-items-center justify-content-center'>
@@ -118,8 +119,7 @@ const HomePage = () => {
           </Col>
         </Row>
 
-        <Row className='d-flex justify-content-center align-items-center pt-5 pt-sm-2'></Row>
-        <Row className='d-flex justify-content-center'>
+        <Row className='d-flex justify-content-center align-items-center pt-4 pt-sm-2'>
           <Col xs={9}>
             <h2 className='city-title text-thin text-light'>
               {currentCity.name}
@@ -132,7 +132,7 @@ const HomePage = () => {
         </Row>
       </Container>
       <CloudsAnimation />
-    </>
+    </div>
   );
 };
 export default HomePage;

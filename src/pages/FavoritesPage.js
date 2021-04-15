@@ -7,6 +7,8 @@ import { API_KEY, BASE_URL } from '../apiKeys';
 import ErrorToast from '../components/ErrorToast';
 const FavoritesPage = () => {
   const favorites = useSelector(state => state.favorites);
+  const theme = useSelector(state => state.theme);
+
   const dispatch = useDispatch();
   const [apiError, setApiError] = useState(false);
   const [favoritesList, setFavoritesList] = useState([]);
@@ -38,24 +40,26 @@ const FavoritesPage = () => {
   };
   if (!favorites || favorites.length === 0) {
     return (
-      <Container>
-        <Row className='pt-5'>
-          <Col className='d-flex justify-content-center align-items-center'>
-            <div className='no-favorites-container'>
-              <p className='no-favorites-text'>
-                You have no selected favorite cities
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <div className={theme === 'light' ? null : 'dark-theme'}>
+        <Container>
+          <Row className='pt-5'>
+            <Col className='d-flex justify-content-center align-items-center'>
+              <div className='no-favorites-container'>
+                <p className='no-favorites-text'>
+                  You have no selected favorite cities
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className={theme === 'light' ? null : 'dark-theme'}>
       {apiError && <ErrorToast />}
-      <Row className='m-1'>
+      <Row className='p-1 m-0'>
         {favoritesList.map((city, i) => (
           <Col md={2} sm={3} xs={6} key={i} className='p-1'>
             <LinkContainer exact to='/'>
@@ -84,7 +88,7 @@ const FavoritesPage = () => {
           </Col>
         ))}
       </Row>
-    </>
+    </div>
   );
 };
 export default FavoritesPage;
