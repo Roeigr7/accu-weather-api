@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Container } from 'react-bootstrap';
 import CityFilter from '../components/HomePage/CityFilter';
 import { useSelector, useDispatch } from 'react-redux';
+import { BASE_URL, API_KEY } from '../apiKeys';
 import { Heart, Trash, ArrowClockwise } from 'react-bootstrap-icons';
 import { toFahrenheit } from '../helperFunctions';
 import useFetch from '../customHooks/useFetch';
@@ -20,7 +21,9 @@ const HomePage = () => {
     if (navigator.geolocation && currentCity.name === 'Your location') {
       navigator.geolocation.getCurrentPosition(position => {
         fetch(
-          `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${position.coords.latitude}%2C${position.coords.longitude}`
+          `${BASE_URL}/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${position.coords.latitude.toFixed(
+            3
+          )}%2C${position.coords.longitude.toFixed(3)}`
         )
           .then(res => res.json())
           .then(data => {
@@ -37,11 +40,11 @@ const HomePage = () => {
   }, []);
   //fetch immediately api hook
   const fiveDaysApi = useFetch(
-    `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
+    `${BASE_URL}/forecasts/v1/daily/5day/${currentCity.key}?apikey=${API_KEY}`,
     {}
   );
   const currentCityApi = useFetch(
-    `https://dataservice.accuweather.com/currentconditions/v1/${currentCity.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`,
+    `${BASE_URL}/currentconditions/v1/${currentCity.key}?apikey=${API_KEY}`,
     {}
   );
 

@@ -7,7 +7,7 @@ body {
     ),
     url('../src/assets/images/j.jpg');
 
-  background-size: 100% 100%;
+  background-size: cover;
   min-height: 100vh;
   background-repeat: no-repeat;
 
@@ -133,9 +133,7 @@ span {
   color: white;
   transition: all 0.3s;
 }
-input {
-  text-align: center;
-}
+
 .navbar-container {
   z-index: 10;
 }

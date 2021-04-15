@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useDispatch } from 'react-redux';
+import { API_KEY, BASE_URL } from '../../apiKeys';
 import ErrorToast from '../ErrorToast';
 const CityFilter = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CityFilter = () => {
     //autocomplete api when user input
     setLoading(true);
     fetch(
-      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${input}`
+      `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${input}`
     )
       .then(res => res.json())
       .then(data => {

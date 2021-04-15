@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { LinkContainer } from 'react-router-bootstrap';
+import { API_KEY, BASE_URL } from '../apiKeys';
 import ErrorToast from '../components/ErrorToast';
 const FavoritesPage = () => {
   const favorites = useSelector(state => state.favorites);
@@ -11,9 +12,7 @@ const FavoritesPage = () => {
   const [favoritesList, setFavoritesList] = useState([]);
   useEffect(() => {
     for (const city of favorites) {
-      fetch(
-        `https://dataservice.accuweather.com/currentconditions/v1/${city.key}?apikey=${process.env.REACT_APP_SECRET_API_KEY}`
-      )
+      fetch(`${BASE_URL}/currentconditions/v1/${city.key}?apikey=${API_KEY}`)
         .then(response => response.json())
         .then(data => {
           const updateCityTemp = {
