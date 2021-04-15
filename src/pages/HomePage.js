@@ -9,6 +9,7 @@ import useFetch from '../customHooks/useFetch';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorToast from '../components/ErrorToast';
 import FiveDays from '../components/FiveDays';
+import CloudsAnimation from '../components/CloudsAnimation';
 const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
@@ -64,71 +65,74 @@ const HomePage = () => {
   }
 
   return (
-    <Container>
-      <Row className='pt-2 d-flex align-items-center justify-content-between mx-md-2 '>
-        <Col className=' text-center d-flex align-items-center justify-content-center'>
-          <CityFilter />
-        </Col>
-      </Row>
-      <Row className='pt-2 d-flex justify-content-around align-items-center'>
-        <Col className='pr-1' xs={6} md={3}>
-          <div className='border-container'>
-            <p className='current-day-title'>{currentCity.name}</p>
-            <img
-              style={{ width: '75px', height: '45px' }}
-              src={`/Weather-icons/${currentCityApi.response[0].WeatherIcon}.png`}
-              alt='weather-icon'
-            />
-            <p className='current-day-text'>
-              {celcius
-                ? currentCityApi.response[0].Temperature.Metric.Value
-                : toFahrenheit(
-                    currentCityApi.response[0].Temperature.Metric.Value
-                  )}
-              &#176;
-            </p>
-          </div>
-        </Col>
+    <>
+      <Container className='home-container pb-0 mb-0'>
+        <Row className='pt-5 pt-sm-2 d-flex align-items-center justify-content-between mx-md-2 '>
+          <Col className=' text-center d-flex align-items-center justify-content-center'>
+            <CityFilter />
+          </Col>
+        </Row>
+        <Row className='pt-5 pt-sm-2 d-flex justify-content-around align-items-center'>
+          <Col className='pr-1' xs={6} md={3}>
+            <div className='border-container'>
+              <p className='current-day-title'>{currentCity.name}</p>
+              <img
+                style={{ width: '75px', height: '45px' }}
+                src={`/Weather-icons/${currentCityApi.response[0].WeatherIcon}.png`}
+                alt='weather-icon'
+              />
+              <p className='current-day-text'>
+                {celcius
+                  ? currentCityApi.response[0].Temperature.Metric.Value
+                  : toFahrenheit(
+                      currentCityApi.response[0].Temperature.Metric.Value
+                    )}
+                &#176;
+              </p>
+            </div>
+          </Col>
 
-        <Col xs={6} md={3} className='pl-1'>
-          <div className='p-2 border-container'>
-            <Button
-              className='mb-2'
-              onClick={() => dispatchToFavorites(isFavorite)}
-              size='sm'
-              variant={isFavorite ? 'danger' : 'light'}
-            >
-              {isFavorite ? <Trash /> : <Heart color='red' />}{' '}
-              {isFavorite ? 'Remove' : 'Add favorite'}
-            </Button>
+          <Col xs={6} md={3} className='pl-1'>
+            <div className='p-2 border-container'>
+              <Button
+                className='mb-2'
+                onClick={() => dispatchToFavorites(isFavorite)}
+                size='sm'
+                variant={isFavorite ? 'danger' : 'light'}
+              >
+                {isFavorite ? <Trash /> : <Heart color='red' />}{' '}
+                {isFavorite ? 'Remove' : 'Add favorite'}
+              </Button>
 
-            <Button
-              variant='outline-light'
-              size='sm'
-              onClick={() => setCelcius(prev => !prev)}
-            >
-              <ArrowClockwise
-                style={{ transform: celcius ? 'scaleX(-1)' : 'scaleX(1)' }}
-              />{' '}
-              {celcius ? 'celcius' : 'fahrenheit'}
-            </Button>
-          </div>
-        </Col>
-      </Row>
+              <Button
+                variant='outline-light'
+                size='sm'
+                onClick={() => setCelcius(prev => !prev)}
+              >
+                <ArrowClockwise
+                  style={{ transform: celcius ? 'scaleX(-1)' : 'scaleX(1)' }}
+                />{' '}
+                {celcius ? 'celcius' : 'fahrenheit'}
+              </Button>
+            </div>
+          </Col>
+        </Row>
 
-      <Row className='d-flex justify-content-center align-items-center pt-3'></Row>
-      <Row className='d-flex justify-content-center'>
-        <Col xs={9}>
-          <h2 className='city-title text-thin text-light'>
-            {currentCity.name}
-          </h2>
-        </Col>
-      </Row>
+        <Row className='d-flex justify-content-center align-items-center pt-5 pt-sm-2'></Row>
+        <Row className='d-flex justify-content-center'>
+          <Col xs={9}>
+            <h2 className='city-title text-thin text-light'>
+              {currentCity.name}
+            </h2>
+          </Col>
+        </Row>
 
-      <Row className='px-lg-5 mx-lg-5 '>
-        <FiveDays celcius={celcius} days={fiveDaysApi} />
-      </Row>
-    </Container>
+        <Row className='px-lg-5 mx-lg-5 '>
+          <FiveDays celcius={celcius} days={fiveDaysApi} />
+        </Row>
+      </Container>
+      <CloudsAnimation />
+    </>
   );
 };
 export default HomePage;

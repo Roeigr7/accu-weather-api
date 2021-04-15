@@ -47,7 +47,6 @@ const CityFilter = () => {
       {apiError && <ErrorToast />}
 
       <AsyncTypeahead
-        size='sm'
         isLoading={loading}
         onChange={dispatchCity}
         labelKey={option => `${option.name}`}

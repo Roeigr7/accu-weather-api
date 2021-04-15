@@ -20,7 +20,7 @@ const MainNavbar = () => {
             className='mr-2 d-inline-block align-center'
             alt='herolo weather app'
           />{' '}
-          <h1 className='logo-title'>Herolo Weather</h1>
+          <h1 className='logo-title'>Weather App</h1>
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
