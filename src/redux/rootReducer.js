@@ -4,7 +4,7 @@ const initialState = {
     key: '215854',
   },
   favorites: [],
-  theme: true,
+  theme: 'light',
 };
 
 export default function rootReducer(state = initialState, action) {

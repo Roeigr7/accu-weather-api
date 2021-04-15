@@ -38,11 +38,12 @@ const MainNavbar = () => {
       </LinkContainer>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='ml-auto'>
+        <Nav className='ml-auto text-center responsive-nav'>
           {' '}
-          <ButtonGroup toggle>
+          <ButtonGroup className='mx-auto p-1 toggle-container' toggle>
             {toggle.map((btn, idx) => (
               <ToggleButton
+                size='sm'
                 key={idx}
                 type='radio'
                 variant='primary'
@@ -57,9 +58,9 @@ const MainNavbar = () => {
           </ButtonGroup>
           <div className='nav-divider' />
           <LinkContainer exact to='/'>
-            <Nav.Link>Weather</Nav.Link>
+            <Nav.Link className='p-1'>Weather</Nav.Link>
           </LinkContainer>
-          <LinkContainer to='/favorites'>
+          <LinkContainer className='p-1' to='/favorites'>
             <Nav.Link>Favorites</Nav.Link>
           </LinkContainer>
         </Nav>
