@@ -56,25 +56,28 @@ const FavoritesPage = () => {
   return (
     <>
       {apiError && <ErrorToast />}
-      <Row className='m-2 m-lg-5'>
+      <Row className='m-1'>
         {favoritesList.map((city, i) => (
-          <Col lg={2} md={3} xs={6} key={i} className='p-2'>
+          <Col md={2} sm={3} xs={6} key={i} className='p-1'>
             <LinkContainer exact to='/'>
               <Card
                 onClick={() => handleFavoriteClick(city)}
                 className='favorite-card text-center'
               >
-                <Card.Header className='bg-dark text-white text-center'>
+                <Card.Header className='card-header bg-dark text-white text-center p-0 m-0 py-1'>
                   {city.name}
                 </Card.Header>
-                <Card.Body>
-                  <Card.Subtitle className='mb-2 text-muted'>
+                <Card.Body className='pb-0 px-0 mx-0'>
+                  <Card.Subtitle className='mb-1 text-muted'>
                     {city.currentTemp}&#176;
                   </Card.Subtitle>
-                  <Card.Text>{city.weatherText}</Card.Text>
+                  <Card.Text className='mb-1 p-0 m-0 card-text'>
+                    {city.weatherText}
+                  </Card.Text>
                   <Card.Img
                     variant='top'
                     src={`/Weather-icons/${city.weatherIcon}.png`}
+                    style={{ width: '75px', height: '45px' }}
                   />
                 </Card.Body>
               </Card>

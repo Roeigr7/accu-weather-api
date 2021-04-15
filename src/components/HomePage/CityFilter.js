@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Col, Form } from 'react-bootstrap';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useDispatch } from 'react-redux';
 import ErrorToast from '../ErrorToast';
@@ -19,6 +18,7 @@ const CityFilter = () => {
   };
 
   const handleSearch = input => {
+    //autocomplete api when user input
     setLoading(true);
     fetch(
       `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_SECRET_API_KEY}&q=${input}`
@@ -35,31 +35,27 @@ const CityFilter = () => {
         );
         setLoading(false);
       })
-      .catch(error => {
+      .catch(() => {
         setApiError(true);
         setLoading(false);
       });
   };
 
   return (
-    <Col md={4} sm={4} className='mt-4'>
+    <>
       {apiError && <ErrorToast />}
-      <Form.Group className='text-center' controlId='formBasicEmail'>
-        <Form.Label>Choose a City</Form.Label>
-        <AsyncTypeahead
-          isLoading={loading}
-          onChange={dispatchCity}
-          labelKey={option => `${option.name}`}
-          options={autoComplete}
-          id='basic-typeahead-single'
-          onSearch={handleSearch}
-        />
-        {/* {!isloading&&errormessage fill} */}
-        <Form.Text className='text-muted'>
-          Choose a city to see next 5 days weather
-        </Form.Text>
-      </Form.Group>
-    </Col>
+
+      <AsyncTypeahead
+        size='sm'
+        isLoading={loading}
+        onChange={dispatchCity}
+        labelKey={option => `${option.name}`}
+        options={autoComplete}
+        id='basic-typeahead-single'
+        onSearch={handleSearch}
+        placeholder='Choose a city'
+      />
+    </>
   );
 };
 export default CityFilter;

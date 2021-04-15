@@ -4,7 +4,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Logo from '../assets/logo.svg';
 const MainNavbar = () => {
   return (
-    <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark'>
+    <Navbar
+      className='navbar-container px-sm-3 p-1 '
+      collapseOnSelect
+      expand='sm'
+      bg='dark'
+      variant='dark'
+    >
       <LinkContainer exact to='/'>
         <Navbar.Brand>
           <img
@@ -14,7 +20,7 @@ const MainNavbar = () => {
             className='mr-2 d-inline-block align-center'
             alt='herolo weather app'
           />{' '}
-          Herolo Weather
+          <h1 className='logo-title'>Herolo Weather</h1>
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />

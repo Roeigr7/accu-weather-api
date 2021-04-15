@@ -1,11 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 body {
+  background-color: #007bff;
   margin: 0;
-  font-family: 'Rubik', sans-serif;
+  background: linear-gradient(
+      rgba(0, 123, 255, 0.9) 0%,
+      rgba(0, 123, 255, 0.6) 100%
+    ),
+    url('../src/assets/images/j.jpg');
+
+  background-size: 100% 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+p {
+  color: white;
+}
+span {
+  color: white;
+}
+.text-thin {
+  font-weight: 100;
+}
 .days-grid {
   display: grid;
   justify-content: center;
@@ -16,8 +35,6 @@ body {
 }
 
 .day-container {
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.04) 0px 1px 2px;
-  height: 100px;
   display: flex;
   padding: 0;
   flex-direction: column;
@@ -25,9 +42,26 @@ body {
   justify-content: center;
   border-radius: 5px;
 }
+
+.day-container p {
+  margin: 0;
+}
+.day-container span {
+  font-size: 0.8em;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.day-text-container {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .city-title {
   text-align: center;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin: 20px 0;
   font-size: 1.2em;
 }
@@ -35,13 +69,23 @@ body {
   margin: 5px;
   font-size: 1em;
 }
-
-.current-day-container {
+.border-container {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.border-container p {
+  margin: 0;
+}
+.current-day-title {
+  font-weight: 100;
 }
 .current-day-text {
-  margin: 5px 15px 5px 0px;
+  font-size: 0.8em;
 }
 .no-favorites-container {
   box-shadow: rgba(255, 0, 0, 0.22) 0px 0px 2px 1px;
@@ -52,12 +96,24 @@ body {
   margin: 0;
   padding: 10px;
 }
-
+.favorite-card {
+  background: var(--light);
+  transition: 0.5s all;
+}
 .favorite-card:hover {
   cursor: pointer;
-  opacity: 0.8;
+  background: var(--dark);
   transition: 0.4s all;
 }
+.card-text {
+  color: var(--dark);
+  transition: 0.4s all;
+}
+.favorite-card:hover .card-text {
+  color: var(--light);
+  transition: 0.4s all;
+}
+
 .toast-text-container {
   text-align: center;
   display: flex;
@@ -65,12 +121,29 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.logo-title {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-weight: 100;
+  color: rgb(151, 151, 151);
+}
+.logo-title:hover {
+  color: white;
+  transition: all 0.3s;
+}
+input {
+  text-align: center;
+}
+.navbar-container {
+  z-index: 10;
+}
+.card-header {
+  font-size: 0.8em;
+  font-weight: 100;
+}
 @media only screen and (max-width: 576px) {
-  .days-grid {
-    grid-template-columns: repeat(3, 0.33fr);
-  }
-
   .current-day-text-container {
     display: flex;
   }
