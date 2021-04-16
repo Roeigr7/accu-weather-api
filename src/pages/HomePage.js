@@ -15,7 +15,6 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
   const favoritesList = useSelector(state => state.favorites);
-
   const [celcius, setCelcius] = useState(true);
   const [apiError, setApiError] = useState(false);
   useEffect(() => {
@@ -34,7 +33,8 @@ const HomePage = () => {
               payload: { name: 'Your location', key: data.Key },
             });
           })
-          .catch(() => {
+          .catch(e => {
+            console.log('cccc', e);
             setApiError(true);
           });
       });
@@ -42,12 +42,10 @@ const HomePage = () => {
   }, []);
   //fetch immediately api hook
   const fiveDaysApi = useFetch(
-    `${BASE_URL}/forecasts/v1/daily/5day/${currentCity.key}?apikey=${API_KEY}`,
-    {}
+    `${BASE_URL}/forecasts/v1/daily/5day/${currentCity.key}?apikey=${API_KEY}`
   );
   const currentCityApi = useFetch(
-    `${BASE_URL}/currentconditions/v1/${currentCity.key}?apikey=${API_KEY}`,
-    {}
+    `${BASE_URL}/currentconditions/v1/${currentCity.key}?apikey=${API_KEY}`
   );
 
   const isFavorite = favoritesList.some(f => f.name === currentCity.name);

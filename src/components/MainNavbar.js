@@ -38,7 +38,7 @@ const MainNavbar = () => {
       </LinkContainer>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='pb-3 d-flex align-items-center ml-auto text-center responsive-nav'>
+        <Nav className='pb-sm-0 pb-3 d-flex align-items-center ml-auto text-center responsive-nav'>
           <LinkContainer className='nav-button' exact to='/'>
             <Nav.Link>Weather</Nav.Link>
           </LinkContainer>
