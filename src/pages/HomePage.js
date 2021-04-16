@@ -68,7 +68,7 @@ const HomePage = () => {
   return (
     <>
       <Container className='home-container pb-0 mb-0'>
-        <Row className='d-flex align-items-center justify-content-center p-3'>
+        <Row className='d-flex align-items-center justify-content-center p-4'>
           <img className='app-logo' src={appLogo} alt='app-weather-logo' />
         </Row>
         <Row className='pt-2 d-flex align-items-center justify-content-between mx-md-2 '>
@@ -76,7 +76,7 @@ const HomePage = () => {
             <CityFilter />
           </Col>
         </Row>
-        <Row className=' pt-2 d-flex justify-content-around align-items-center'>
+        <Row className='pt-4 pt-sm-2 d-flex justify-content-around align-items-center'>
           <Col className='pr-1' xs={6} md={3}>
             <div className='border-container'>
               <p className='current-day-title'>{currentCity.name}</p>
@@ -120,7 +120,7 @@ const HomePage = () => {
           </Col>
         </Row>
 
-        <Row className='d-flex justify-content-center align-items-center pt-2'>
+        <Row className='d-flex justify-content-center align-items-center pt-4 pt-sm-2'>
           <Col xs={9}>
             <h2 className='city-title text-thin text-light'>
               {currentCity.name}
