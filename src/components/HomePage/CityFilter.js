@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useDispatch } from 'react-redux';
 import { API_KEY, BASE_URL } from '../../apiKeys';
-import ErrorToast from '../ErrorToast';
+import ErrorToast from '../shared/ErrorToast';
 const CityFilter = () => {
   const dispatch = useDispatch();
   const [autoComplete, setAutoComplete] = useState([]);

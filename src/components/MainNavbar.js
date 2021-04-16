@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/logos/logo.svg';
 
 const MainNavbar = () => {
   const dispatch = useDispatch();

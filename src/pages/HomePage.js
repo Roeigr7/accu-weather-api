@@ -6,15 +6,14 @@ import { BASE_URL, API_KEY } from '../apiKeys';
 import { Heart, Trash, ArrowClockwise } from 'react-bootstrap-icons';
 import { toFahrenheit } from '../helperFunctions';
 import useFetch from '../customHooks/useFetch';
-import LoadingSpinner from '../components/LoadingSpinner';
-import ErrorToast from '../components/ErrorToast';
-import FiveDays from '../components/FiveDays';
-import CloudsAnimation from '../components/CloudsAnimation';
+import LoadingSpinner from '../components/shared/LoadingSpinner';
+import ErrorToast from '../components/shared/ErrorToast';
+import FiveDays from '../components/HomePage/FiveDays';
+import CloudsAnimation from '../components/HomePage/CloudsAnimation';
 const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
   const favoritesList = useSelector(state => state.favorites);
-  const theme = useSelector(state => state.theme);
 
   const [celcius, setCelcius] = useState(true);
   const [apiError, setApiError] = useState(false);
@@ -66,7 +65,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className={theme === 'light' ? null : 'dark-theme'}>
+    <>
       <Container className='home-container pb-0 mb-0'>
         <Row className='pt-5 pt-sm-2 d-flex align-items-center justify-content-between mx-md-2 '>
           <Col className=' text-center d-flex align-items-center justify-content-center'>
@@ -98,7 +97,6 @@ const HomePage = () => {
               <Button
                 className='mb-2'
                 onClick={() => dispatchToFavorites(isFavorite)}
-                size='sm'
                 variant={isFavorite ? 'danger' : 'light'}
               >
                 {isFavorite ? <Trash /> : <Heart color='red' />}{' '}
@@ -107,7 +105,6 @@ const HomePage = () => {
 
               <Button
                 variant='outline-light'
-                size='sm'
                 onClick={() => setCelcius(prev => !prev)}
               >
                 <ArrowClockwise
@@ -132,7 +129,7 @@ const HomePage = () => {
         </Row>
       </Container>
       <CloudsAnimation />
-    </div>
+    </>
   );
 };
 export default HomePage;

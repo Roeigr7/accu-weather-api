@@ -9,7 +9,6 @@ body {
   background-size: cover;
   min-height: 100vh;
   background-repeat: no-repeat;
-
   z-index: 0;
 
   -webkit-font-smoothing: antialiased;
@@ -25,16 +24,32 @@ span {
   width: 1px;
   margin: auto 10px;
   height: 35px;
-
   background: rgb(97, 97, 97);
 }
 .dark-theme {
   background-color: var(--dark);
-  min-width: 100%;
-  position: relative;
   min-height: 100vh;
   padding: 0;
+  position: relative;
   margin: 0;
+}
+.rights {
+  font-weight: 100;
+  font-size: 0.8em;
+
+  margin: 0;
+}
+.credit-logos {
+  margin: 0px 5px;
+  width: 30px;
+  height: auto;
+}
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  min-width: 100%;
+  background-color: rgba(6, 39, 71, 0.1);
 }
 .home-container {
   z-index: 10;
@@ -110,7 +125,7 @@ span {
   top: 44%;
   opacity: 0.2;
   animation-duration: 37s;
-  animation-delay: 0s;
+  animation-delay: 3s;
 }
 .clouds li:nth-child(5) {
   background-size: contain;
@@ -155,6 +170,18 @@ span {
   top: 12%;
   animation-duration: 49s;
   animation-delay: 4s;
+}
+.clouds li:nth-child(9) {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 40%;
+  background-image: url('../src/assets/images/cloud9.png');
+  left: -100%;
+  top: 40%;
+  opacity: 0.2;
+  animation-duration: 33s;
+  animation-delay: 0s;
 }
 @keyframes clouds {
   0% {
@@ -275,7 +302,7 @@ span {
   color: rgb(151, 151, 151);
 }
 .logo-title:hover {
-  color: white;
+  color: var(--primary);
   transition: all 0.3s;
 }
 

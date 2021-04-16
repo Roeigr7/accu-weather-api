@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import { API_KEY, BASE_URL } from '../apiKeys';
-import ErrorToast from '../components/ErrorToast';
+import EmptyFavorites from '../components/FavoritePage/EmptyFavorites';
+import ErrorToast from '../components/shared/ErrorToast';
 const FavoritesPage = () => {
   const favorites = useSelector(state => state.favorites);
-  const theme = useSelector(state => state.theme);
 
   const dispatch = useDispatch();
   const [apiError, setApiError] = useState(false);
@@ -38,26 +38,10 @@ const FavoritesPage = () => {
       payload: { name: selectedCity.name, key: selectedCity.key },
     });
   };
-  if (!favorites || favorites.length === 0) {
-    return (
-      <div className={theme === 'light' ? null : 'dark-theme'}>
-        <Container>
-          <Row className='pt-5'>
-            <Col className='d-flex justify-content-center align-items-center'>
-              <div className='no-favorites-container'>
-                <p className='no-favorites-text'>
-                  You have no selected favorite cities
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
+  if (!favorites || favorites.length === 0) return <EmptyFavorites />;
 
   return (
-    <div className={theme === 'light' ? null : 'dark-theme'}>
+    <>
       {apiError && <ErrorToast />}
       <Row className='p-1 m-0'>
         {favoritesList.map((city, i) => (
@@ -88,7 +72,7 @@ const FavoritesPage = () => {
           </Col>
         ))}
       </Row>
-    </div>
+    </>
   );
 };
 export default FavoritesPage;

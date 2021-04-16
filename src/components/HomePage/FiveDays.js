@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { toCelcius } from '../helperFunctions';
+import { toCelcius } from '../../helperFunctions';
 const FiveDays = ({ days, celcius }) => {
   return (
     <div className='days-grid'>

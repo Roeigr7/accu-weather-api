@@ -11,6 +11,7 @@ const CloudsAnimation = () => {
       <li alt='cloud' />
       <li alt='cloud' />
       <li alt='cloud' />
+      <li alt='cloud' />
     </ul>
   );
 };
