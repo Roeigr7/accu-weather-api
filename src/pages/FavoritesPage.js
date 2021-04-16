@@ -41,7 +41,7 @@ const FavoritesPage = () => {
   if (!favorites || favorites.length === 0) return <EmptyFavorites />;
 
   return (
-    <div className='page-container'>
+    <>
       {apiError && <ErrorToast />}
       <Row className='p-1 m-0'>
         {favoritesList.map((city, i) => (
@@ -72,7 +72,7 @@ const FavoritesPage = () => {
           </Col>
         ))}
       </Row>
-    </div>
+    </>
   );
 };
 export default FavoritesPage;

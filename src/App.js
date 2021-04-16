@@ -11,14 +11,16 @@ function App() {
   const theme = useSelector(state => state.theme);
   return (
     <div className={theme === 'light' ? null : 'dark-theme'}>
-      <Router>
-        <MainNavbar />
-        <Switch>
-          <Route path='/' exact component={HomePage} />
-          <Route path='/favorites' component={FavoritesPage} />
-        </Switch>
-        <Footer />
-      </Router>
+      <main>
+        <Router>
+          <MainNavbar />
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+            <Route path='/favorites' component={FavoritesPage} />
+          </Switch>
+        </Router>
+      </main>
+      <Footer />
     </div>
   );
 }
