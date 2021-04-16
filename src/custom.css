@@ -337,6 +337,15 @@ span {
   }
   .responsive-nav {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+  }
+  .nav-button {
+    font-size: 1em;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    align-self: stretch;
+  }
+  .toggle-container {
+    margin: 10px;
   }
 }
