@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 function App() {
   const theme = useSelector(state => state.theme);
   return (
-    <div className={theme === 'light' ? null : 'dark-theme'}>
+    <div className={theme === 'light' ? 'theme' : 'theme dark-theme'}>
       <main>
         <Router>
           <MainNavbar />
