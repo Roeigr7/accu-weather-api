@@ -10,6 +10,7 @@ import LoadingSpinner from '../components/shared/LoadingSpinner';
 import ErrorToast from '../components/shared/ErrorToast';
 import FiveDays from '../components/HomePage/FiveDays';
 import CloudsAnimation from '../components/HomePage/CloudsAnimation';
+import appLogo from '../assets/logos/applogo.png';
 const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
@@ -67,6 +68,9 @@ const HomePage = () => {
   return (
     <>
       <Container className='home-container pb-0 mb-0'>
+        <Row className='d-flex align-items-center justify-content-center p-4'>
+          <img className='app-logo' src={appLogo} alt='app-weather-logo' />
+        </Row>
         <Row className='pt-5 pt-sm-2 d-flex align-items-center justify-content-between mx-md-2 '>
           <Col className=' text-center d-flex align-items-center justify-content-center'>
             <CityFilter />

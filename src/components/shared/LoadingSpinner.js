@@ -3,9 +3,11 @@ import { Container } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 
 const LoadingSpinner = () => (
-  <Container className='d-flex justify-content-center'>
-    <ReactLoading type='cylon' color={'black'} height={'20%'} width={'20%'} />
-  </Container>
+  <div className='page-container'>
+    <Container className='d-flex justify-content-center'>
+      <ReactLoading type='cylon' color={'black'} height={'20%'} width={'20%'} />
+    </Container>
+  </div>
 );
 
 export default LoadingSpinner;

@@ -10,16 +10,16 @@ import { useSelector } from 'react-redux';
 function App() {
   const theme = useSelector(state => state.theme);
   return (
-    <Router>
-      <div className={theme === 'light' ? null : 'dark-theme'}>
+    <div className={theme === 'light' ? null : 'dark-theme'}>
+      <Router>
         <MainNavbar />
         <Switch>
           <Route path='/' exact component={HomePage} />
           <Route path='/favorites' component={FavoritesPage} />
         </Switch>
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
