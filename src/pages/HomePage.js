@@ -2,64 +2,63 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Container } from 'react-bootstrap';
 import CityFilter from '../components/HomePage/CityFilter';
 import { useSelector, useDispatch } from 'react-redux';
-import { BASE_URL, API_KEY } from '../apiKeys';
+
 import { Heart, Trash, ArrowClockwise } from 'react-bootstrap-icons';
 import { toFahrenheit } from '../helperFunctions';
-import useFetch from '../customHooks/useFetch';
 import LoadingSpinner from '../components/shared/LoadingSpinner';
 import ErrorToast from '../components/shared/ErrorToast';
 import FiveDays from '../components/HomePage/FiveDays';
 import CloudsAnimation from '../components/HomePage/CloudsAnimation';
 import appLogo from '../assets/logos/applogo.png';
+import {
+  getInitialData,
+  getCurrentData,
+  getForecastsData,
+} from '../apiActions';
 const HomePage = () => {
   const dispatch = useDispatch();
   const currentCity = useSelector(state => state.currentCity);
   const favoritesList = useSelector(state => state.favorites);
   const [celcius, setCelcius] = useState(true);
   const [apiError, setApiError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cityDetails, setCityDetails] = useState(null);
+  const [forecast, setForecast] = useState(null);
   useEffect(() => {
-    //check and fetch current geolocation
-    if (navigator.geolocation && currentCity.name === 'Your location') {
-      navigator.geolocation.getCurrentPosition(position => {
-        fetch(
-          `${BASE_URL}/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${position.coords.latitude.toFixed(
-            3
-          )}%2C${position.coords.longitude.toFixed(3)}`
-        )
-          .then(res => res.json())
-          .then(data => {
-            dispatch({
-              type: 'CURRENT_CITY',
-              payload: { name: 'Your location', key: data.Key },
-            });
-          })
-          .catch(e => {
-            console.log('cccc', e);
-            setApiError(true);
-          });
-      });
+    ///fetch data depend on initial landing or not
+    async function fetchData() {
+      let initial;
+      let current;
+      let forecasts;
+      let checkInitial = false;
+      try {
+        setIsLoading(true);
+        if (!currentCity.Key) {
+          initial = await getInitialData();
+          checkInitial = true;
+        }
+        current = await getCurrentData(checkInitial ? initial : currentCity);
+        forecasts = await getForecastsData(
+          checkInitial ? initial : currentCity
+        );
+        setIsLoading(false);
+      } catch (e) {
+        setApiError(true);
+        setIsLoading(false);
+      }
+      setCityDetails(current);
+      setForecast(forecasts);
     }
-  }, []);
-  //fetch immediately api hook
-  const fiveDaysApi = useFetch(
-    `${BASE_URL}/forecasts/v1/daily/5day/${currentCity.key}?apikey=${API_KEY}`
-  );
-  const currentCityApi = useFetch(
-    `${BASE_URL}/currentconditions/v1/${currentCity.key}?apikey=${API_KEY}`
-  );
+    fetchData();
+  }, [currentCity]);
 
   const isFavorite = favoritesList.some(f => f.name === currentCity.name);
-
   const dispatchToFavorites = isFavorite => {
     const action = isFavorite ? 'REMOVE' : 'ADD';
     dispatch({ type: `${action}_FAVORITES`, payload: currentCity });
   };
 
-  if (fiveDaysApi.isLoading || currentCityApi.isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (currentCityApi.error || fiveDaysApi.error || apiError) {
+  if (apiError) {
     return <ErrorToast />;
   }
 
@@ -76,22 +75,26 @@ const HomePage = () => {
         </Row>
         <Row className='pt-4 pt-sm-2 d-flex justify-content-around align-items-center'>
           <Col className='pr-1' xs={6} md={3}>
-            <div className='border-container'>
-              <p className='current-day-title'>{currentCity.name}</p>
-              <img
-                style={{ width: '75px', height: '45px' }}
-                src={`/Weather-icons/${currentCityApi.response[0].WeatherIcon}.png`}
-                alt='weather-icon'
-              />
-              <p className='current-day-text'>
-                {celcius
-                  ? currentCityApi.response[0].Temperature.Metric.Value
-                  : toFahrenheit(
-                      currentCityApi.response[0].Temperature.Metric.Value
-                    )}
-                &#176;
-              </p>
-            </div>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              cityDetails && (
+                <div className='border-container'>
+                  <p className='current-day-title'>{currentCity.name}</p>
+                  <img
+                    style={{ width: '75px', height: '45px' }}
+                    src={`/Weather-icons/${cityDetails[0].WeatherIcon}.png`}
+                    alt='weather-icon'
+                  />
+                  <p className='current-day-text'>
+                    {celcius
+                      ? cityDetails[0].Temperature.Metric.Value
+                      : toFahrenheit(cityDetails[0].Temperature.Metric.Value)}
+                    &#176;
+                  </p>
+                </div>
+              )
+            )}
           </Col>
 
           <Col xs={6} md={3} className='pl-1'>
@@ -127,7 +130,7 @@ const HomePage = () => {
         </Row>
 
         <Row className='px-lg-5 mx-lg-5 '>
-          <FiveDays celcius={celcius} days={fiveDaysApi} />
+          <FiveDays isLoading={isLoading} celcius={celcius} days={forecast} />
         </Row>
       </Container>
       <CloudsAnimation />

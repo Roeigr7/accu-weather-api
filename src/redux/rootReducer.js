@@ -1,7 +1,7 @@
 const initialState = {
   currentCity: {
     name: 'Your location',
-    key: '215854',
+    Key: null,
   },
   favorites: [],
   theme: 'light',
@@ -23,7 +23,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         favorites: state.favorites.filter(
-          fav => fav.key !== action.payload.key
+          fav => fav.Key !== action.payload.Key
         ),
       };
     case 'UPDATE_FAVORITES':

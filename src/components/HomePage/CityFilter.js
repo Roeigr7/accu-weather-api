@@ -30,7 +30,7 @@ const CityFilter = () => {
           data.map(city => {
             return {
               name: city.LocalizedName,
-              key: city.Key,
+              Key: city.Key,
             };
           })
         );

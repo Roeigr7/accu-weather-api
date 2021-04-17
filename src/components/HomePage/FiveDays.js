@@ -1,11 +1,14 @@
 import moment from 'moment';
 import React from 'react';
 import { toCelcius } from '../../helperFunctions';
-const FiveDays = ({ days, celcius }) => {
+import LoadingSpinner from '../shared/LoadingSpinner';
+const FiveDays = ({ days, celcius, isLoading }) => {
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <div className='days-grid'>
-      {days.response &&
-        days.response.DailyForecasts.map((day, i) => (
+      {days &&
+        days.DailyForecasts.map((day, i) => (
           <div key={i} className='day-container'>
             <p className='text-thin'>{moment(day.Date).format('ddd')}</p>
             <img

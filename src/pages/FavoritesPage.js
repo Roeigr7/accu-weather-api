@@ -14,12 +14,12 @@ const FavoritesPage = () => {
   const [favoritesList, setFavoritesList] = useState([]);
   useEffect(() => {
     for (const city of favorites) {
-      fetch(`${BASE_URL}/currentconditions/v1/${city.key}?apikey=${API_KEY}`)
+      fetch(`${BASE_URL}/currentconditions/v1/${city.Key}?apikey=${API_KEY}`)
         .then(response => response.json())
         .then(data => {
           const updateCityTemp = {
             name: city.name,
-            key: city.key,
+            Key: city.Key,
             currentTemp: data[0].Temperature.Metric.Value,
             weatherText: data[0].WeatherText,
             weatherIcon: data[0].WeatherIcon,
@@ -35,7 +35,7 @@ const FavoritesPage = () => {
   const handleFavoriteClick = selectedCity => {
     dispatch({
       type: 'CURRENT_CITY',
-      payload: { name: selectedCity.name, key: selectedCity.key },
+      payload: { name: selectedCity.name, Key: selectedCity.Key },
     });
   };
   if (!favorites || favorites.length === 0) return <EmptyFavorites />;
