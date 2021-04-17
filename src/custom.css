@@ -150,7 +150,7 @@ span {
   background-repeat: no-repeat;
   width: 40%;
   height: 40%;
-  background-image: url('../src/assets/images/cloud10.png');
+  background-image: url('../src/assets/images/cloud8.png');
   left: -100%;
   top: 19%;
   animation-duration: 36s;
@@ -172,7 +172,7 @@ span {
   background-repeat: no-repeat;
   width: 40%;
   height: 40%;
-  background-image: url('../src/assets/images/cloud2.png');
+  background-image: url('../src/assets/images/cloud9.png');
   left: -100%;
   top: 12%;
   animation-duration: 49s;
@@ -183,7 +183,7 @@ span {
   background-repeat: no-repeat;
   width: 40%;
   height: 40%;
-  background-image: url('../src/assets/images/cloud9.png');
+  background-image: url('../src/assets/images/cloud7.png');
   left: -100%;
   top: 40%;
   opacity: 0.2;
