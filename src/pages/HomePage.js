@@ -90,7 +90,7 @@ const HomePage = () => {
                     {celcius
                       ? cityDetails[0].Temperature.Metric.Value
                       : toFahrenheit(cityDetails[0].Temperature.Metric.Value)}
-                    &#176;
+                    &#176;{celcius? 'c':'f'}
                   </p>
                 </div>
               )
@@ -115,7 +115,7 @@ const HomePage = () => {
                 <ArrowClockwise
                   style={{ transform: celcius ? 'scaleX(-1)' : 'scaleX(1)' }}
                 />{' '}
-                {celcius ? 'celcius' : 'fahrenheit'}
+                {celcius ? 'to fahrenheit' : 'to celcius'}
               </Button>
             </div>
           </Col>

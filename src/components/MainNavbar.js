@@ -3,6 +3,11 @@ import { Navbar, Nav, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Logo from '../assets/logos/logo.svg';
+  //toggle theme button
+  const toggle = [
+    { name: 'Light', value: 'light' },
+    { name: 'Dark', value: 'dark' },
+  ];
 
 const MainNavbar = () => {
   const dispatch = useDispatch();
@@ -10,19 +15,14 @@ const MainNavbar = () => {
   const handleTheme = e => {
     dispatch({ type: 'TOGGLE_THEME', payload: e.currentTarget.value });
   };
-  //toggle theme button
-  const toggle = [
-    { name: 'Light', value: 'light' },
-    { name: 'Dark', value: 'dark' },
-  ];
 
   return (
     <Navbar
       className='navbar-container px-sm-3 p-1 '
       collapseOnSelect
       expand='sm'
-      bg={theme === 'light' ? 'dark' : 'light'}
-      variant={theme === 'light' ? 'dark' : 'light'}
+      bg={theme === 'light' ?  'light':'dark' }
+      variant={theme === 'light' ? 'light':'dark'}
     >
       <LinkContainer exact to='/'>
         <Navbar.Brand>

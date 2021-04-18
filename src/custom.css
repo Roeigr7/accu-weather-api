@@ -230,7 +230,10 @@ span {
   margin: 0;
   opacity: 0.7;
 }
-
+.deg{
+  font-size:0.4em;
+  color:white;
+}
 .day-text-container {
   display: flex;
   align-self: stretch;

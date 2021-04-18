@@ -56,7 +56,7 @@ const FavoritesPage = () => {
                 </Card.Header>
                 <Card.Body className='pb-0 px-0 mx-0'>
                   <Card.Subtitle className='mb-1 text-muted'>
-                    {city.currentTemp}&#176;
+                    {city.currentTemp}&#176;c
                   </Card.Subtitle>
                   <Card.Text className='mb-1 p-0 m-0 card-text'>
                     {city.weatherText}
