@@ -24,6 +24,7 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cityDetails, setCityDetails] = useState(null);
   const [forecast, setForecast] = useState(null);
+  
   useEffect(() => {
     ///fetch data depend on initial landing or not
     async function fetchData() {
@@ -35,7 +36,9 @@ const HomePage = () => {
         setIsLoading(true);
         if (!currentCity.Key) {
           initial = await getInitialData();
+          dispatch({ type: 'CURRENT_CITY', payload: {name:'Your location',Key:initial.Key} });
           checkInitial = true;
+          
         }
         current = await getCurrentData(checkInitial ? initial : currentCity);
         forecasts = await getForecastsData(
@@ -54,14 +57,13 @@ const HomePage = () => {
 
   const isFavorite = favoritesList.some(f => f.name === currentCity.name);
   const dispatchToFavorites = isFavorite => {
+
     const action = isFavorite ? 'REMOVE' : 'ADD';
     dispatch({ type: `${action}_FAVORITES`, payload: currentCity });
   };
 
-  if (apiError) {
-    return <ErrorToast />;
-  }
-
+  if (apiError) return <ErrorToast />;
+  
   return (
     <>
       <Container className='home-container pb-0 mb-0'>
