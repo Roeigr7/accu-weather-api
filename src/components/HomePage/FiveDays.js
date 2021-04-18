@@ -21,13 +21,13 @@ const FiveDays = ({ days, celcius, isLoading }) => {
                 {celcius
                   ? toCelcius(day.Temperature.Maximum.Value)
                   : day.Temperature.Maximum.Value}
-                &#176;{celcius? 'c':'f'}
+               
               </p>
               <span>
                 {celcius
                   ? toCelcius(day.Temperature.Minimum.Value)
                   : day.Temperature.Minimum.Value}
-                  &#176;{celcius? 'c':'f'}
+                
               </span>
             </div>
           </div>
