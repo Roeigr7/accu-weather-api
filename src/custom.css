@@ -297,11 +297,11 @@ span {
 }
 .card-text {
   color: var(--dark);
-  transition: 0.4s all;
+  transition: 0.3s all;
 }
 .favorite-card:hover .card-text {
   color: var(--light);
-  transition: 0.4s all;
+  transition: 0.3s all;
 }
 
 .toast-text-container {
