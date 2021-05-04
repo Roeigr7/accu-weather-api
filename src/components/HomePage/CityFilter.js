@@ -8,8 +8,9 @@ const CityFilter = () => {
   const [autoComplete, setAutoComplete] = useState([]);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(false);
+let timer=0;
 
-  //set the selectedCity to currentCity in redux state
+//set the selectedCity to currentCity in redux state
   const dispatchCity = selectedCity => {
     if (selectedCity.length === 0) {
       return null;
@@ -20,6 +21,9 @@ const CityFilter = () => {
 
   const handleSearch = input => {
     //autocomplete api when user input
+if(timer) clearTimeout(timer);
+  timer = setTimeout(() => {
+    console.log("s",input)
     setLoading(true);
     fetch(
       `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${input}`
@@ -40,6 +44,8 @@ const CityFilter = () => {
         setApiError(true);
         setLoading(false);
       });
+  }, 4000);
+    
   };
 
   return (
@@ -54,6 +60,7 @@ const CityFilter = () => {
         id='basic-typeahead-single'
         onSearch={handleSearch}
         placeholder='Choose a city'
+        delay={0}
       />
     </>
   );

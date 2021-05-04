@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Container } from 'react-bootstrap';
 import CityFilter from '../components/HomePage/CityFilter';
 import { useSelector, useDispatch } from 'react-redux';
-
+import {handleFavorites,initialLocation} from '../redux/actions';
 import { Heart, Trash, ArrowClockwise } from 'react-bootstrap-icons';
 import { toFahrenheit } from '../helperFunctions';
 import LoadingSpinner from '../components/shared/LoadingSpinner';
@@ -36,7 +36,8 @@ const HomePage = () => {
         setIsLoading(true);
         if (!currentCity.Key) {
           initial = await getInitialData();
-          dispatch({ type: 'CURRENT_CITY', payload: {name:'Your location',Key:initial.Key} });
+          dispatch(initialLocation(initial.Key))
+     
           checkInitial = true;
           
         }
@@ -57,9 +58,8 @@ const HomePage = () => {
 
   const isFavorite = favoritesList.some(f => f.name === currentCity.name);
   const dispatchToFavorites = isFavorite => {
-
     const action = isFavorite ? 'REMOVE' : 'ADD';
-    dispatch({ type: `${action}_FAVORITES`, payload: currentCity });
+    dispatch(handleFavorites(action,currentCity))
   };
 
   if (apiError) return <ErrorToast />;

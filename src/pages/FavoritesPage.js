@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-
+import {favoriteChose} from '../redux/actions'
 import { LinkContainer } from 'react-router-bootstrap';
 import { API_KEY, BASE_URL } from '../apiKeys';
 import EmptyFavorites from '../components/FavoritePage/EmptyFavorites';
@@ -33,11 +33,9 @@ const FavoritesPage = () => {
   }, []);
 
   const handleFavoriteClick = selectedCity => {
-    dispatch({
-      type: 'CURRENT_CITY',
-      payload: { name: selectedCity.name, Key: selectedCity.Key },
-    });
+    dispatch(favoriteChose(selectedCity.name,selectedCity.Key))
   };
+  
   if (!favorites || favorites.length === 0) return <EmptyFavorites />;
 
   return (
